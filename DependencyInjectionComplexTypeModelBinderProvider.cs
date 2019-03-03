@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
 namespace De.Powolozki.AspNetCore.ModelBinding
 {
@@ -13,8 +13,9 @@ namespace De.Powolozki.AspNetCore.ModelBinding
             if (context == null) { throw new ArgumentNullException(nameof(context)); }
 
 
-            if (context.Metadata.IsComplexType && !context.Metadata.IsCollectionType
-                && context.Services.GetService(context.Metadata.ModelType) != null)
+            if (context.Metadata.IsComplexType && !context.Metadata.IsCollectionType &&
+                context.Services.GetService(context.Metadata.ModelType) != null &&
+                ModelComesFromQuery(context))
             {
 
                 var propertyBinders = context.Metadata.Properties
@@ -26,6 +27,12 @@ namespace De.Powolozki.AspNetCore.ModelBinding
             }
 
             return null;
+        }
+
+        private static bool ModelComesFromQuery(ModelBinderProviderContext context)
+        {
+            var bindingSource = context.BindingInfo?.BindingSource;
+            return bindingSource == null || bindingSource.CanAcceptDataFrom(BindingSource.Query);
         }
     }
 }

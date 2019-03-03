@@ -4,12 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>De.Powolozki.AspNetCore.ModelBinding</RootNamespace>
     <Description>Dependency injection based complex type model binder for asp.net core 2</Description>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Alexander Powolozki</Authors>
     <Company>Alexander Powolozki</Company>
     <PackageTags>asp.net core complex type modelbinding dependencyinjection</PackageTags>
     <Copyright>(c) by Alexander Powolozki</Copyright>
     <AssemblyName>De.Powolozki.DependencyInjectionComplexTypeModelBinder</AssemblyName>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
